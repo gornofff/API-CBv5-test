@@ -27,3 +27,17 @@
             bracketSpacing: true,
             arrowParens: "avoid",
           }
+6.  Install & config mocha test runner:
+    6.1. npm i mocha
+    6.2. create `.mocharc.js` file
+    6.3. paste following into .mocharc:
+         module.exports = {
+             require: ['@babel/register'],
+             spec: 'path to tests directory',
+             exclude: 'path to files to be excluded from test run',
+             file: `path to global hook`,                               //will be described below
+         }
+    6.4. modify `test` script:
+        -   "test": "mocha --config .mocharc.js"
+7.  Install supertest (HTTP client) & chai (assertion library) packages:
+    -   npm i supertest chai
