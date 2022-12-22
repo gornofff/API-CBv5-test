@@ -30,7 +30,7 @@
 6.  Install & config mocha test runner:
     6.1. npm i mocha
     6.2. create `.mocharc.js` file
-    6.3. paste following into .mocharc:
+    6.3. paste following into .mocharc (comment unnecessary option!!!!):
          module.exports = {
              require: ['@babel/register'],
              spec: 'path to tests directory',
@@ -41,3 +41,15 @@
         -   "test": "mocha --config .mocharc.js"
 7.  Install supertest (HTTP client) & chai (assertion library) packages:
     -   npm i supertest chai
+8. Creating fist test example
+    8.1. Create `tests` directory
+    8.2. Add this directory to .mocharc
+    8.3. Create first spec file named example.spec.js inside of `tests` folder
+    8.4. Create simple test for common function (for example function sum()):
+        -   import { expect } from chai
+        -   create `describe` and `it` with relevant names
+        -   write assertion
+        -   run the test with CLI command / 'play' sign
+        -   change the assertion value to invalid output to check if test works properly
+        -   add some more tests for any other functions (as a HomeWork)
+
