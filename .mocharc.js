@@ -1,6 +1,6 @@
 module.exports = {
     require: ['@babel/register'],
-    spec: 'path to tests directory',
+    spec: 'tests/**/*.js',
     exclude: 'path to files to be excluded from test run',
-    file: `path to global hook`,
+    //file: `path to global hook`,
 }
