@@ -1,0 +1,29 @@
+1. Create a new project in WS
+2. Run `npm init -y` in terminal
+    In case to connecting with GitHub:
+3. Run `git init` in terminal
+    3.1. Run commands in terminal:
+    -   git add README.md
+    -   git branch -M main
+    3.2. Create new branch
+    3.3. Create `.gitignore` file and add there `.idea` and `node_modules`
+    3.4. make a commit
+    3.5. Push to origin
+4. Installing and configuring Babel:
+    4.1. Install necessary packages:
+        - run in terminal: `npm i @babel/core @babel/preset-env @babel/register`
+    4.2. Create `.babelrc` file and put following in it:
+         `  {"presets": ["@babel/preset-env"]}`
+5. Installing and config Prettier:
+    5.1. npm i prettier
+    5.2. check if Prettier plugin installed to WS
+    5.3. goto Settings/Languages and Frameworks/Prettier, check the path and choose the options
+    5.4. create .prettierrc.js file and put into:
+        module.exports = {
+            trailingComma: "es5",
+            tabWidth: 2,
+            semi: false,
+            singleQuote: true,
+            bracketSpacing: true,
+            arrowParens: "avoid",
+          }
