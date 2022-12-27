@@ -70,6 +70,10 @@
                     expect(res.statusCode).to.eq(200)                                     // assertion for response statusCode
                                                                                           // for assertion syntax see https://www.chaijs.com/api/bdd/
                 });
-    9.4. Create a test with invalid credentials
-    9.5. Add a example.spec file to .mocharrc exclude property:
-        - exclude: 'tests/example.spec.js'
+    9.4. Exclude example.spec file from tests by adding following to .mocharrc:
+            - exclude: 'tests/example.spec.js'
+    9.5. Create a test with invalid credentials
+    9.6. Add more tests for both describes:
+        -   test for response message
+        -   test for token
+        -   test for any property inside of response
