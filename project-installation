@@ -85,4 +85,21 @@
             -   import 'dotenv/config'
     10.5.   Replace all open data to env variables
     10.6.   Optionally - Install '.env files support' (tooltips and highlights for env syntax)
+11. Add local hooks:
+    11.1.   Create 'before' hook and move there auth API request
+            -   NB: variable res should be moved above 'before' hook
+    11.2.   Delete request from subsequent tests
+12. Add global hook:
+    12.1.   Create new directory (config/general/global-hooks/setup, etc...)
+    12.2.   Inside created folder add new .js file (config/general/global-hook/setup, etc...)
+    12.3.   Inside the created file:
+            -   import 'dotenv/config'
+            -   import supertest from 'supertest'
+            -   copy 'before' hook from auth.spec
+            -   declare new env variable named 'token':
+                process.env['TOKEN'] = path to response property (res.body.payload.token)
+            -   add option to .mocharc configuration file:
+                file: `path to global hook` ('config/setup.js')
+
+
 
