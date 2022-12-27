@@ -53,7 +53,7 @@
         -   change the assertion value to invalid output to check if test works properly
         -   add some more tests for any other functions (as a HomeWork)
 9. Authentication tests:
-    9.1. Create a spec file: 'auth.js'
+    9.1. Create a spec file: 'auth.spec.js'
     9.2. Import necessary packages:
         -   import supertest from 'supertest'
         -   import { expect } from ' chai'
@@ -90,7 +90,7 @@
             -   NB: variable res should be moved above 'before' hook
     11.2.   Delete request from subsequent tests
 12. Add global hook:
-    12.1.   Create new directory (config/general/global-hooks/setup, etc...)
+    12.1.   Create new directory (config/general/global-hooks/setup, etc...) in root folder
     12.2.   Inside created folder add new .js file (config/general/global-hook/setup, etc...)
     12.3.   Inside the created file:
             -   import 'dotenv/config'
@@ -100,6 +100,26 @@
                 process.env['TOKEN'] = path to response property (res.body.payload.token)
             -   add option to .mocharc configuration file:
                 file: `path to global hook` ('config/setup.js')
-
-
-
+13. Create first helper:
+    13.1.   Create a new directory 'Helpers' in root folder
+    13.2.   Create auth.helper.js file
+    13.3.   Inside the file:
+            -   import supertest from 'supertest'
+            -   create a function with relevant name and following syntax:
+                function login(email, password){
+                    return supertest(process.env.BASE_URL)
+                    .post('/v5/user/login')
+                    send({email: email, password: password})
+                    }
+            -   export created function:
+                export { login }
+            -   import helper to spec file:
+                import * as authHelper from '../helpers/auth.helper.js'
+                    /*
+                      Short brief to syntax of relative paths:
+                        ..  -   two dots moves up to a parent directory (which is a root directory of a project for this case)
+                        .   -   one dots represent the current directory (which is a tests directory for this case)
+                    */
+            -   replace requests in auth.spec.js to authHelper function
+            -   replace request in auth-global-hook to authHelper function
+            -   remove unnecessary imports

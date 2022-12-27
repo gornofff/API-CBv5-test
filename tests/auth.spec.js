@@ -1,13 +1,11 @@
-import supertest from 'supertest'
 import {expect} from 'chai'
+import * as authHelper from '../helpers/auth-helper.js'
 
 describe('Authentication', () => {
     describe('Login with valid credentials', () => {
         let res
         before(async () => {
-            res = await supertest(process.env.BASE_URL)
-                .post('user/login')
-                .send({email: process.env.EMAIL, password: process.env.PASS})
+            res = await authHelper.login(process.env.EMAIL, process.env.PASS)
         })
 
         it('Check the status code', async () => {
@@ -26,9 +24,7 @@ describe('Authentication', () => {
     describe('Login with invalid credentials', () => {
         let res
         before(async () => {
-            res = await supertest(process.env.BASE_URL)
-                .post('user/login')
-                .send({email: 'invalid@pirate.com', password: 'invalid'})
+            res = await authHelper.login('invalid@pirate.com', 'invalid')
         })
         it('Check the status code', async () => {
             expect(res.statusCode).to.eq(400)
