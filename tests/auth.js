@@ -38,7 +38,7 @@ describe('Authentication', () => {
             expect(res.body.message).to.eq('Auth failed')
         })
 
-        it('Check the response succes status', async () => 
+        it('Check the response succes status', async () => {
             expect(res.body.success).to.be.false
         })
     })
