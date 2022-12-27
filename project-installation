@@ -84,3 +84,5 @@
     10.4.   Add following to the tests file:
             -   import 'dotenv/config'
     10.5.   Replace all open data to env variables
+    10.6.   Optionally - Install '.env files support' (tooltips and highlights for env syntax)
+
