@@ -41,7 +41,7 @@
         -   "test": "mocha --config .mocharc.js"
 7.  Install supertest (HTTP client) & chai (assertion library) packages:
     -   npm i supertest chai
-8. Creating fist test example
+8. Creating first test example
     8.1. Create `tests` directory
     8.2. Add this directory to .mocharc
     8.3. Create first spec file named example.spec.js inside of `tests` folder
@@ -77,3 +77,10 @@
         -   test for response message
         -   test for token
         -   test for any property inside of response
+10. Add environment variables:
+    10.1.   Install dotenv package (based on dotenv documentation - https://www.npmjs.com/package/dotenv)
+    10.2.   Create .env file with variables inside (DO NOT ADD IT TO GITHUB!!!)
+    10.3.   Create .env.example file with common credentials and push it to GitHub.
+    10.4.   Add following to the tests file:
+            -   import 'dotenv/config'
+    10.5.   Replace all open data to env variables
