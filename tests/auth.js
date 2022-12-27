@@ -48,7 +48,7 @@ describe('Authentication', () => {
             expect(res.body.message).to.eq('Auth failed')
         })
 
-        it('Check the response succes status', async () => {
+        it('Check the response success status', async () => {
             res = await supertest(process.env.BASE_URL)
                 .post('user/login')
                 .send({email: 'invalid@pirate.com', password: 'invalid'})
