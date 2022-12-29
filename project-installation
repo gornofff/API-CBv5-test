@@ -1,14 +1,14 @@
 1. Create a new project in WS
 2. Run `npm init -y` in terminal
     In case to connecting with GitHub:
-3. Run `git init` in terminal
-    3.1. Run commands in terminal:
-    -   git add README.md
-    -   git branch -M main
-    3.2. Create new branch
-    3.3. Create `.gitignore` file and add there `.idea` and `node_modules`
-    3.4. make a commit
-    3.5. Push to origin
+    3. Run `git init` in terminal
+        3.1. Run commands in terminal:
+        -   git add README.md
+        -   git branch -M main
+        3.2. Create new branch
+        3.3. Create `.gitignore` file and add there `.idea` and `node_modules`
+        3.4. make a commit
+        3.5. Push to origin
 4. Installing and configuring Babel:
     4.1. Install necessary packages:
         - run in terminal: `npm i @babel/core @babel/preset-env @babel/register`
@@ -30,7 +30,7 @@
 6.  Install & config mocha test runner:
     6.1. npm i mocha
     6.2. create `.mocharc.js` file
-    6.3. paste following into .mocharc:
+    6.3. paste following into .mocharc (comment unnecessary option!!!!):
          module.exports = {
              require: ['@babel/register'],
              spec: 'path to tests directory',
@@ -41,3 +41,96 @@
         -   "test": "mocha --config .mocharc.js"
 7.  Install supertest (HTTP client) & chai (assertion library) packages:
     -   npm i supertest chai
+8. Creating first test example
+    8.1. Create `tests` directory
+    8.2. Add this directory to .mocharc
+    8.3. Create first spec file named example.spec.js inside of `tests` folder
+    8.4. Create simple test for common function (for example function sum()):
+        -   import { expect } from chai
+        -   create `describe` and `it` with relevant names
+        -   write assertion
+        -   run the test with CLI command / 'play' sign
+        -   change the assertion value to invalid output to check if test works properly
+        -   add some more tests for any other functions (as a HomeWork)
+9. Authentication tests:
+    9.1. Create a spec file: 'auth.spec.js'
+    9.2. Import necessary packages:
+        -   import supertest from 'supertest'
+        -   import { expect } from ' chai'
+    9.3. Create a test with valid credentials:
+        - request syntax:
+            describe('Authentication', () => {
+                let res                                                                   // create a variable to assign a response
+                it('Login with valid credentials', async () => {                          // using async function to catch the promise
+                    res = await supertest('https://clientbase-server.herokuapp.com/v5/')  // pass the base URL to request body
+                        .post('user/login')                                               // method and endpoint
+                        .set('HeaderName', HeaderValue)                                   // set the headers  (optional)
+                        .send({email: 'jacksparrow@pirate.com', password: 'Pirate666!'})  // pass the body in JSON object format
+
+                    expect(res.statusCode).to.eq(200)                                     // assertion for response statusCode
+                                                                                          // for assertion syntax see https://www.chaijs.com/api/bdd/
+                });
+    9.4. Exclude example.spec file from tests by adding following to .mocharrc:
+            - exclude: 'tests/example.spec.js'
+    9.5. Create a test with invalid credentials
+    9.6. Add more tests for both describes:
+        -   test for response message
+        -   test for token
+        -   test for any property inside of response
+10. Add environment variables:
+    10.1.   Install dotenv package (based on dotenv documentation - https://www.npmjs.com/package/dotenv)
+    10.2.   Create .env file with variables inside (DO NOT ADD IT TO GITHUB!!!)
+    10.3.   Create .env.example file with common credentials and push it to GitHub.
+    10.4.   Add following to the tests file:
+            -   import 'dotenv/config'
+    10.5.   Replace all open data to env variables
+    10.6.   Optionally - Install '.env files support' (tooltips and highlights for env syntax)
+    
+    
+
+11. Add local hooks:
+    11.1.   Create 'before' hook and move there auth API request
+            -   NB: variable res should be moved above 'before' hook
+    11.2.   Delete request from subsequent tests
+12. Add global hook:
+    12.1.   Create new directory (config/general/global-hooks/setup, etc...) in root folder
+    12.2.   Inside created folder add new .js file (config/general/global-hook/setup, etc...)
+    12.3.   Inside the created file:
+            -   import 'dotenv/config'
+            -   import supertest from 'supertest'
+            -   copy 'before' hook from auth.spec
+            -   declare new env variable named 'token':
+                process.env['TOKEN'] = path to response property (res.body.payload.token)
+            -   add option to .mocharc configuration file:
+                file: `path to global hook` ('config/setup.js')
+
+13. Creating tests for User Register:
+    13.1.   Create a new branch
+    13.2.   Create a new spec
+    13.3.   Import expect, supertest
+    13.4.   Create a User Creation request:
+
+
+14. Create first helper:
+    14.1.   Create a new directory 'Helpers' in root folder
+    14.2.   Create auth.helper.js file
+    14.3.   Inside the file:
+            -   import supertest from 'supertest'
+            -   create a function with relevant name and following syntax:
+                function login(email, password){
+                    return supertest(process.env.BASE_URL)
+                    .post('/v5/user/login')
+                    send({email: email, password: password})
+                    }
+            -   export created function:
+                export { login }
+            -   import helper to spec file:
+                import * as authHelper from '../helpers/auth.helper.js'
+                    /*
+                      Short brief to syntax of relative paths:
+                        ..  -   two dots moves up to a parent directory (which is a root directory of a project for this case)
+                        .   -   one dots represent the current directory (which is a tests directory for this case)
+                    */
+            -   replace requests in auth.spec.js to authHelper function
+            -   replace request in auth-global-hook to authHelper function
+            -   remove unnecessary imports
