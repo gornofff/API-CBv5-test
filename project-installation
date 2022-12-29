@@ -85,6 +85,9 @@
             -   import 'dotenv/config'
     10.5.   Replace all open data to env variables
     10.6.   Optionally - Install '.env files support' (tooltips and highlights for env syntax)
+    
+    
+
 11. Add local hooks:
     11.1.   Create 'before' hook and move there auth API request
             -   NB: variable res should be moved above 'before' hook
