@@ -100,10 +100,18 @@
                 process.env['TOKEN'] = path to response property (res.body.payload.token)
             -   add option to .mocharc configuration file:
                 file: `path to global hook` ('config/setup.js')
-13. Create first helper:
-    13.1.   Create a new directory 'Helpers' in root folder
-    13.2.   Create auth.helper.js file
-    13.3.   Inside the file:
+
+13. Creating tests for User Register:
+    13.1.   Create a new branch
+    13.2.   Create a new spec
+    13.3.   Import expect, supertest
+    13.4.   Create a User Creation request:
+
+
+14. Create first helper:
+    14.1.   Create a new directory 'Helpers' in root folder
+    14.2.   Create auth.helper.js file
+    14.3.   Inside the file:
             -   import supertest from 'supertest'
             -   create a function with relevant name and following syntax:
                 function login(email, password){
