@@ -32,6 +32,7 @@ Required Environment:<br>
 - prettier - as a code refactoring tool
 - dotenv - as an environment variables library
 - newman - as a connection tool between IDE and Postman
+- chance - as a data randomizer
 <br>
 
 #### *<font color="AntiqueWhite"> - author:</font>*
@@ -42,6 +43,13 @@ Required Environment:<br>
 <br>
 
 *For privacy reasons the used authentication credentials won't be shared. 
-But you are always welcome to create a new user with preferable data.*
+But you are always welcome to create a new user with preferable data.
+To make the project work correctly please do the following after the cloning:*
+
+- register on the [website](https://clientbase.us/v5)
+- create a .env file in root directory
+- copy the code from .env.example file
+- amend the EMAIL and PASSWORD values with your own credentials
+- enjoy the project
 
 *In case of any questions and/or objections please feel free to share your minds in issues or contact me*
