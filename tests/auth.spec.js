@@ -1,13 +1,12 @@
 import {expect} from 'chai'
-import supertest from 'supertest'
+import { login } from '../helpers/general-helper'
 
 describe('Authentication Positive', () => {
     describe('Login with valid credentials', () => {
         let res
+
         before(async ()=>{
-            res = await supertest(process.env.BASE_URL)
-                .post('user/login')
-                .send({email: process.env.EMAIL, password: process.env.PASSWORD})
+            res = await login(process.env.EMAIL, process.env.PASSWORD)
         })
 
         it('Check the status code', async () => {
@@ -27,51 +26,47 @@ describe('Authentication Negative', () => {
     describe('Login with invalid email', () => {
         let res
 
+        before(async ()=>{
+            res = await login('invalid@pirate.com', process.env.PASSWORD)
+        })
+
         it('Check the status code', async () => {
-            res = await supertest(process.env.BASE_URL)
-                .post('user/login')
-                .send({email: 'invalid@pirate.com', password: process.env.PASSWORD})
             expect(res.statusCode).to.eq(400)
         })
 
         it('Check the status message', async () => {
-            res = await supertest(process.env.BASE_URL)
-                .post('user/login')
-                .send({email: 'invalid@pirate.com', password: process.env.PASSWORD})
             expect(res.body.message).to.eq('Auth failed')
         })
     })
 
     describe('Login with invalid password', () => {
         let res
+
+        before(async ()=>{
+            res = await login(process.env.EMAIL, 'invalid')
+        })
+
         it('Check the status code', async () => {
-            res = await supertest(process.env.BASE_URL)
-                .post('user/login')
-                .send({email: process.env.EMAIL, password: 'invalid'})
             expect(res.statusCode).to.eq(400)
         })
 
         it('Check the status message', async () => {
-            res = await supertest(process.env.BASE_URL)
-                .post('user/login')
-                .send({email: process.env.EMAIL, password: 'invalid'})
             expect(res.body.message).to.eq('Auth failed')
         })
     })
 
     describe('Login with empty fields', () => {
         let res
+
+        before(async ()=>{
+            res = await login('', '')
+        })
+
         it('Check the status code', async () => {
-            res = await supertest(process.env.BASE_URL)
-                .post('user/login')
-                .send({email: '', password: ''})
             expect(res.statusCode).to.eq(400)
         })
 
         it('Check the status message', async () => {
-            res = await supertest(process.env.BASE_URL)
-                .post('user/login')
-                .send({email: '', password: ''})
             expect(res.body.message).to.eq('Auth failed')
         })
     })
