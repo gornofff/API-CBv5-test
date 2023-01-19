@@ -3,7 +3,7 @@ import { register, randomEmail } from '../helpers/general-helper'
 const chance = require('chance').Chance()
 
 
-describe.only('Create a user with valid credentials', () => {
+describe('Create a user with valid credentials', () => {
     let res
  before(async ()=>{
      res = await register(chance.first(), chance.last(), randomEmail(), process.env.PASSWORD)
