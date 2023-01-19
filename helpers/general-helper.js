@@ -13,5 +13,10 @@ function register(firstName, lastName, email, password){
         .send({firstName, lastName, email, password})
 }
 
+function randomEmail(){
+    return 'User_' + Date.now() + '@pirate.com'
+}
 
-export { login, register }
+
+
+export { login, register, randomEmail }

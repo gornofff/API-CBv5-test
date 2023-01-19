@@ -1,16 +1,19 @@
 import { expect } from 'chai'
-import { register } from '../helpers/general-helper'
+import { register, randomEmail } from '../helpers/general-helper'
 const chance = require('chance').Chance()
 
-describe('Create a user with valid credentials', () => {
-    let res
-    it('check the response status code', async () => {
-        res = await register(chance.first(), chance.last(), chance.email(), process.env.PASSWORD)
-        expect(res.statusCode).to.eq(201)
 
+describe.only('Create a user with valid credentials', () => {
+    let res
+ before(async ()=>{
+     res = await register(chance.first(), chance.last(), randomEmail(), process.env.PASSWORD)
+ })
+
+    it('check the response status code', async () => {
+        expect(res.statusCode).to.eq(201)
     })
+
     it('check the response message', async () => {
-        res = await register(chance.first(), chance.last(), chance.email(), process.env.PASSWORD)
         expect(res.body.message).contain('User created')
     })
 });
@@ -19,7 +22,7 @@ describe('User registration negative', () => {
     describe('create a user without password', () => {
         let res
         before(async()=>{
-            res = await register(chance.first(), chance.last(), chance.email(), '')
+            res = await register(chance.first(), chance.last(), randomEmail(), '')
         })
 
         it('check response status code',  () => {
