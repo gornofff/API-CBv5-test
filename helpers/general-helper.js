@@ -6,4 +6,12 @@ function login(email, password){
         .send({email, password})
 }
 
-export { login }
+
+function register(firstName, lastName, email, password){
+    return supertest(process.env.BASE_URL)
+        .post('user')
+        .send({firstName, lastName, email, password})
+}
+
+
+export { login, register }

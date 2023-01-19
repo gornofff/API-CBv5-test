@@ -2,7 +2,7 @@ import {expect} from 'chai'
 import { login } from '../helpers/general-helper'
 
 describe('Authentication Positive', () => {
-    describe.only('Login with valid credentials', () => {
+    describe('Login with valid credentials', () => {
         let res
 
         before(async ()=>{
